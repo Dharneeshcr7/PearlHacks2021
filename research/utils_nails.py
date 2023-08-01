@@ -137,7 +137,7 @@ class fingernailseg:
         raw = np.array(raw.resize(self.sz))
         X_test = []
         X_test.append(raw)
-        X_test = np.array(X_test).astype('float32')
+        X_test = X_test.astype('float32')
         X_test /= 255    
         raw = np.array(raw.resize(self.sz))
         
