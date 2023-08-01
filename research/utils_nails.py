@@ -129,8 +129,19 @@ class fingernailseg:
     def load_model(self):
         self.model.load_weights('unet.h5')
 
-    def predict(self):
-        return self.model.predict(self.X_test, batch_size=self.batch_size, verbose=0)
+    def predict(self,test_path):
+        
+        raw = Image.open(test_path)
+        X_test = []
+        X_test.append(raw)
+        X_test = np.array(X_test).astype('float32')
+        X_test /= 255    
+        raw = np.array(raw.resize(self.sz))
+        
+
+
+        return self.model.predict(X_test, verbose=0)
+        # return self.model.predict(self.X_test, batch_size=self.batch_size, verbose=0)
     
     @classmethod # change NN model
     def change_model(cls, net):
