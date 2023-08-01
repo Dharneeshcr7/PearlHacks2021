@@ -13,7 +13,9 @@ from keras import backend as K
 from keras.utils import plot_model
 import tensorflow as tf
 from IPython.display import clear_output
+import torch
 
+from torchvision import transforms
 
 def mean_iou(y_true, y_pred):
     yt0 = y_true[:,:,:,0]
@@ -132,6 +134,7 @@ class fingernailseg:
     def predict(self,test_path):
         
         raw = Image.open(test_path)
+        raw = np.array(raw.resize(self.sz))
         X_test = []
         X_test.append(raw)
         X_test = np.array(X_test).astype('float32')
